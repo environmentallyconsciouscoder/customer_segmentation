@@ -36,7 +36,7 @@ class DataFrame:
 
     def label_encoding(self, column_name: str):
         le = LabelEncoder()
-        self.df[column_name + '_encoded'] = le.fit_transform(self.df[column_name])
+        self.df[column_name] = le.fit_transform(self.df[column_name])
 
     def hot_encoding(self, column_name: str):
         ohe = OneHotEncoder(handle_unknown='ignore', sparse_output=False)
@@ -68,7 +68,7 @@ class DataFrame:
         # Initialize the instance of KBinsDiscretizer
         dis = KBinsDiscretizer(n_bins=number_buckets, encode='ordinal', strategy='quantile')
         ## fit and transform the data
-        self.df[ column + '_bucket'] = dis.fit_transform(self.df[[column]])
+        self.df[column] = dis.fit_transform(self.df[[column]])
 
     def get_bin_edges(self, column: str, strategy: str):
         # Number of buckets
